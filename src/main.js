@@ -116,12 +116,32 @@ function initApp() {
 // ---- Sidebar ----
 function initSidebar() {
   const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('sidebar-backdrop');
+  const mobileMenuBtn = document.getElementById('btn-mobile-menu');
+
+  const closeSidebar = () => {
+    document.body.classList.remove('sidebar-open');
+  };
+
+  const toggleSidebar = () => {
+    document.body.classList.toggle('sidebar-open');
+  };
+
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('click', toggleSidebar);
+  }
+
+  if (backdrop) {
+    backdrop.addEventListener('click', closeSidebar);
+  }
+
   if (!sidebar) return;
 
   sidebar.querySelectorAll('.sidebar__item[data-route]').forEach(item => {
     item.addEventListener('click', () => {
       const route = item.dataset.route;
       navigate(route);
+      closeSidebar();
     });
   });
 }
