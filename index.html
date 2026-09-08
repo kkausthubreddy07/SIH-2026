@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CITY AI — Visakhapatnam Traffic Intelligence Command Center</title>
+  <meta name="description" content="AI-powered city-wide ANPR traffic intelligence command center for Visakhapatnam, Andhra Pradesh. Simulated real-time vehicle monitoring, trajectory reconstruction, and traffic analytics." />
+
+  <!-- Google Fonts — Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <!-- Leaflet Heat -->
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <!-- App Styles -->
+  <link rel="stylesheet" href="/src/styles/design-system.css" />
+  <link rel="stylesheet" href="/src/styles/layout.css" />
+  <link rel="stylesheet" href="/src/styles/components.css" />
+  <link rel="stylesheet" href="/src/styles/screens.css" />
+</head>
+<body>
+  <!-- Auth Screen (shown before login) -->
+  <div id="auth-screen" class="auth-screen"></div>
+
+  <!-- Main App Shell (hidden until login) -->
+  <div id="app" class="app-shell" style="display:none;">
+    <!-- Top Bar -->
+    <header id="topbar" class="topbar">
+      <div class="topbar__left">
+        <div class="topbar__logo">
+          <div class="topbar__logo-icon">
+            <i data-lucide="scan-eye"></i>
+          </div>
+          <div class="topbar__brand">
+            <span class="topbar__brand-name">CITY AI</span>
+            <span class="topbar__brand-sub">VISAKHAPATNAM • ANDHRA PRADESH</span>
+          </div>
+        </div>
+      </div>
+      <div class="topbar__right">
+        <div class="topbar__live">
+          <span class="pulse-dot pulse-dot--success"></span>
+          <span class="text-caption text-secondary" style="font-weight: 600; letter-spacing: 0.04em;">SYSTEM ONLINE</span>
+        </div>
+        <!-- Demo Scenario Selector -->
+        <div style="display:flex;align-items:center;gap:6px;">
+          <select class="select-input" id="scenario-selector" style="padding:4px 28px 4px 10px;font-size:11px;border:1px solid rgba(59,130,246,0.5);font-weight:600;cursor:pointer;">
+            <option value="">⚡ Trigger Demo Scenario...</option>
+            <option value="scenario-stolen">🚨 1. Stolen Vehicle Hot Pursuit (AP31AB1234)</option>
+            <option value="scenario-heat">🔥 2. Peak Rush Density Heatmap</option>
+            <option value="scenario-deviation">⚠️ 3. Route Deviation Anomaly (MH12XY9876)</option>
+            <option value="scenario-echallan">🚔 4. Instant E-Challan Generation</option>
+          </select>
+        </div>
+        <button class="topbar__icon-btn" id="btn-theme-toggle" title="Toggle Light / Dark Mode" aria-label="Toggle Theme">
+          <i data-lucide="sun" id="theme-toggle-icon"></i>
+        </button>
+        <button class="topbar__icon-btn" id="btn-notifications">
+          <i data-lucide="bell"></i>
+          <span class="topbar__badge" id="notification-badge">3</span>
+        </button>
+        <div class="topbar__divider"></div>
+        <div class="topbar__user">
+          <div class="topbar__avatar">A</div>
+          <div class="topbar__user-info">
+            <span class="text-sm text-primary-white">Admin</span>
+            <span class="text-caption text-secondary">Command Center</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Sidebar -->
+    <nav id="sidebar" class="sidebar">
+      <ul class="sidebar__nav">
+        <li class="sidebar__item active" data-route="dashboard">
+          <i data-lucide="layout-dashboard"></i>
+          <span>Dashboard</span>
+        </li>
+        <li class="sidebar__item" data-route="monitoring">
+          <i data-lucide="monitor"></i>
+          <span>Live Monitoring</span>
+        </li>
+        <li class="sidebar__item" data-route="vehicles">
+          <i data-lucide="car"></i>
+          <span>Vehicles</span>
+        </li>
+        <li class="sidebar__item" data-route="trajectory">
+          <i data-lucide="route"></i>
+          <span>Trajectory</span>
+        </li>
+        <li class="sidebar__item" data-route="analytics">
+          <i data-lucide="bar-chart-3"></i>
+          <span>Analytics</span>
+        </li>
+        <li class="sidebar__item" data-route="alerts">
+          <i data-lucide="shield-alert"></i>
+          <span>Alerts</span>
+          <span class="sidebar__badge sidebar__badge--critical" id="alert-count">3</span>
+        </li>
+        <li class="sidebar__item" data-route="cameras">
+          <i data-lucide="cctv"></i>
+          <span>Cameras</span>
+        </li>
+      </ul>
+
+      <div class="sidebar__footer">
+        <ul class="sidebar__nav" style="margin-bottom: 4px;">
+          <li class="sidebar__item" data-route="settings">
+            <i data-lucide="settings"></i>
+            <span>Settings</span>
+          </li>
+        </ul>
+        <div class="sidebar__version">
+          <span class="text-caption text-secondary">v2.1.0 — BEL Edition</span>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="content" class="content"></main>
+  </div>
+
+  <!-- App Script -->
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

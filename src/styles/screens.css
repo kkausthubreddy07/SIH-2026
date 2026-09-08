@@ -1,0 +1,203 @@
+/* ============================================
+   CITY AI — Screen Layout Styles
+   Screen-specific containers, panels and hero sections
+   ============================================ */
+
+/* ---------- Dashboard Screen ---------- */
+.dashboard-screen {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+/* ---------- Live Monitoring Screen ---------- */
+.monitoring-screen {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+/* ---------- Vehicle Search Screen ---------- */
+.vehicle-search-hero {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: var(--sp-10) var(--sp-8);
+  text-align: center;
+  margin-bottom: var(--sp-6);
+  position: relative;
+  overflow: hidden;
+}
+
+.vehicle-search-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), #6366F1, var(--info));
+}
+
+.vehicle-search-hero__title {
+  font-size: var(--h2);
+  font-weight: 700;
+  margin-bottom: var(--sp-2);
+}
+
+.vehicle-search-hero__subtitle {
+  color: var(--text-secondary);
+  margin-bottom: var(--sp-6);
+}
+
+.vehicle-search-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.vehicle-search-bar input {
+  flex: 1;
+  height: 52px;
+  font-size: 18px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0 var(--sp-5);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.vehicle-search-bar .btn {
+  height: 52px;
+  padding: 0 var(--sp-8);
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+}
+
+/* ---------- Trajectory Screen Layout ---------- */
+.trajectory-map {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.trajectory-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  height: fit-content;
+}
+
+.trajectory-panel__section {
+  margin-bottom: var(--sp-5);
+  padding-bottom: var(--sp-5);
+  border-bottom: 1px solid var(--border);
+}
+
+.trajectory-panel__section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* ---------- Camera Details Screen Layout ---------- */
+.camera-detail-feed {
+  width: 100%;
+  height: 360px;
+  background: var(--bg-base);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.camera-detail-feed::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px);
+}
+
+.camera-detail-feed__overlay {
+  position: absolute;
+  top: var(--sp-3);
+  left: var(--sp-3);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: var(--sp-2) var(--sp-3);
+  background: rgba(11, 15, 20, 0.85);
+  backdrop-filter: blur(8px);
+  border-radius: var(--radius);
+  font-size: var(--caption);
+  font-weight: 600;
+}
+
+/* ---------- Alerts Screen Layout ---------- */
+.alert-summary {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
+}
+
+.alert-summary__item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-4);
+  text-align: center;
+}
+
+.alert-summary__count {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.alert-summary__label {
+  font-size: var(--caption);
+  color: var(--text-secondary);
+  margin-top: var(--sp-1);
+}
+
+.alert-tabs {
+  display: flex;
+  gap: var(--sp-2);
+  margin-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: var(--sp-2);
+}
+
+.alert-tabs__tab {
+  padding: var(--sp-2) var(--sp-4);
+  border-radius: var(--radius) var(--radius) 0 0;
+  font-size: var(--body);
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition);
+  border-bottom: 2px solid transparent;
+}
+
+.alert-tabs__tab:hover {
+  color: var(--text);
+}
+
+.alert-tabs__tab.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
